@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="SJBlogUWP.View.AboutSJBlog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SJBlogUWP.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Background="#18B4ED" Height="52" VerticalAlignment="Top">
+            <ToggleButton Click="goBackButton_Click" VerticalAlignment="Top" Foreground="White" Background="#18B4ED">
+                <ToggleButton.Content>
+                    <Border Width="40" Height="40">
+                        <SymbolIcon Symbol="57618"/>
+                    </Border>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <TextBlock Text="关于" TextAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="0,-50,0,0" FontSize="14.5" FontFamily="Segoe UI"/>
+        </StackPanel>
+
+        <ScrollViewer Margin="0,55,0,0" Background="#F8F9FB" HorizontalAlignment="Stretch">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Source="/Assets/StoreLogo.scale-200.png" Width="100" Height="100" Margin="0,0,0,0"/>
+                <TextBlock Text="Steve Jrong's Blog UWP" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,35,5,15" FontFamily="{ThemeResource XirodFontFamily}" FontSize="12"/>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="v 1.3 Beta" FontFamily="{ThemeResource JhengHeiUIFontFamily}"/>
+
+                <TextBlock Text="当前版本  1.3 Build 201611131715" Margin="0,35,0,25" FontSize="16.5" Foreground="#696969" TextWrapping="WrapWholeWords" FontFamily="{ThemeResource JhengHeiUIFontFamily}"></TextBlock>
+
+                <TextBlock Text="个人博客 UWP客户端" TextWrapping="WrapWholeWords" FontSize="16.5" Foreground="#696969" FontFamily="{ThemeResource JhengHeiUIFontFamily}"/>
+
+                <TextBlock Text="Official Site  " Margin="0,65,0,0" FontSize="16.5" Foreground="#696969" FontFamily="{ThemeResource JhengHeiUIFontFamily}"/>
+                <HyperlinkButton x:Name="moreLink" Content="www.stevejrong.top" Click="moreLink_Click" FontFamily="{ThemeResource JhengHeiUIFontFamily}"/>
+
+                <TextBlock Text="GitHub  " Margin="0,15,0,0" FontSize="16.5" Foreground="#696969" FontFamily="Microsoft JhengHei UI"/>
+                <HyperlinkButton x:Name="moreLink2" Content="github.com/SteveJrong" Click="moreLink2_Click" FontFamily="Microsoft JhengHei UI"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

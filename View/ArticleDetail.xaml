@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="SJBlogUWP.View.ArticleDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SJBlogUWP.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.BottomAppBar>
+        <CommandBar FontFamily="{ThemeResource JhengHeiUIFontFamily}">
+            <AppBarButton Label="刷新" Icon="Refresh" Click="RefreshAppBarButton_Click"/>
+            <AppBarButton Label="网页打开" Icon="World" Click="HomeAppBarButton_Click"></AppBarButton>
+            <AppBarButton Label="互动信息" Icon="Message" Click="ContactAppBarButton_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+    <Grid Background="#F8F9FB">
+        <StackPanel Background="#18B4ED" Height="52" VerticalAlignment="Top">
+            <ToggleButton Click="goBackButton_Click" VerticalAlignment="Top" Foreground="White" Background="#18B4ED">
+                <ToggleButton.Content>
+                    <Border Width="40" Height="40">
+                        <SymbolIcon Symbol="57618"/>
+                    </Border>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <TextBlock x:Name="articleTitle" TextAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="0,-50,0,0" FontSize="14.5" FontFamily="Segoe UI"/>
+        </StackPanel>
+        <WebView x:Name="webBrowser" Margin="0,51.5,0,0"></WebView>
+        <ProgressRing x:Name="progress" IsActive="{x:Bind IsLoaded,Mode=OneWay}" Width="55" Height="55"/>
+    </Grid>
+</Page>

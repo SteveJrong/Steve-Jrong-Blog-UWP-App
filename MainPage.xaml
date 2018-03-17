@@ -1,0 +1,123 @@
+﻿<Page
+    x:Class="SJBlogLoginDemo1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SJBlogLoginDemo1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="关于" Click="AboutButton_Click" Icon="Help"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid Background="{ThemeResource SystemControlBackgroundBaseLowBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="TabletOrPCStyle">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600"/>
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="applicationTitle.Text" Value="Steve Jrong's Blog"/>
+                    </VisualState.Setters>
+
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <StackPanel Background="#18B4ED">
+        </StackPanel>
+        <Pivot Title="" Margin="0,52,0,0" Background="#F8F9FB" FontFamily="{ThemeResource JhengHeiUIFontFamily}">
+            <PivotItem Header="随便看看" Margin="0,10,0,0" Background="#F8F9FB" Foreground="White">
+                <ScrollViewer x:Name="scrollViewer"
+                     Loaded="scrollViewer_Loaded"
+                      ViewChanged="scrollViewer_ViewChanged">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0">
+                        <ProgressRing x:Name="progressOfInitFirstDatas" IsActive="{x:Bind LoadInitData,Mode=OneWay}" Height="75" Width="75"></ProgressRing>
+                        <ListView x:Name="mainPageList" SelectionChanged="mainPageList_SelectionChanged" Margin="0,0,0,0">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,10,0,10">
+                                        <ItemsPresenter/>
+                                        <TextBlock Text="{Binding articleName}" FontSize="16" Grid.Row="0" Grid.Column="0" Margin="0,3,0,3" FontFamily="{ThemeResource JhengHeiUIFontFamily}"></TextBlock>
+                                        <TextBlock Text="{Binding articleCreateDate}" FontSize="12" Grid.Row="1" Grid.Column="0" Margin="0,3,0,3" FontFamily="{ThemeResource JhengHeiUIFontFamily}"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <ProgressRing IsActive="{x:Bind IsPullRefresh,Mode=OneWay}" Height="40" Width="40"></ProgressRing>
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+
+            <PivotItem Header="热门博文" Background="#F8F9FB" Margin="0,10,0,0" FontFamily="{ThemeResource JhengHeiUIFontFamily}">
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,20,0,0">
+                    <Image Source="/Assets/Resources/Machine.png" Width="100" Height="100" Margin="0,35,0,0"/>
+                    <TextBlock Text="功能开发中 敬请期待" TextAlignment="Center" Margin="0,25,0,0" FontSize="14" FontFamily="{ThemeResource JhengHeiUIFontFamily}" FontStretch="ExtraCondensed" Foreground="#8f8e8e" />
+                </StackPanel>
+            </PivotItem>
+
+            <PivotItem Header="生活头条" Background="#F8F9FB" Margin="0,10,0,0" FontFamily="{ThemeResource JhengHeiUIFontFamily}">
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,20,0,0">
+                    <Image Source="/Assets/Resources/Machine.png" Width="100" Height="100" Margin="0,35,0,0"/>
+                    <TextBlock Text="功能开发中 敬请期待" TextAlignment="Center" Margin="0,25,0,0" FontSize="14" FontFamily="{ThemeResource JhengHeiUIFontFamily}" FontStretch="ExtraCondensed" Foreground="#8f8e8e"/>
+                </StackPanel>
+            </PivotItem>
+
+            <PivotItem Header="技术头条" Background="#F8F9FB" Margin="0,10,0,0" FontFamily="{ThemeResource JhengHeiUIFontFamily}">
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,20,0,0">
+                    <Image Source="/Assets/Resources/Machine.png" Width="100" Height="100" Margin="0,35,0,0"/>
+                    <TextBlock Text="功能开发中 敬请期待" TextAlignment="Center" Margin="0,25,0,0" FontSize="14" FontFamily="{ThemeResource JhengHeiUIFontFamily}" FontStretch="ExtraCondensed" Foreground="#8f8e8e"/>
+                </StackPanel>
+            </PivotItem>
+        </Pivot>
+
+        <ToggleButton Click="ToggleButton_Click" VerticalAlignment="Top" Foreground="White" Background="#18B4ED">
+            <ToggleButton.Content>
+                <Border Background="Transparent" Width="40" Height="40">
+                    <FontIcon x:Name="Hamburger" FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" />
+                </Border>
+            </ToggleButton.Content>
+        </ToggleButton>
+
+        <SplitView x:Name="Spiltter" IsPaneOpen="false" PaneBackground="#E6E6E6" Margin="0,52,0,0">
+            <SplitView.Pane>
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="45"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ListView Grid.Row="1" SelectionMode="Single" Margin="0,-35,0,0" x:Name="splitViewListItems" SelectionChanged="splitViewListItems_SelectionChanged">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,20">
+                                    <TextBlock FontFamily="{Binding FontFamilyProperty,Mode=TwoWay}" Text="{Binding IconFont,Mode=TwoWay}" FontSize="24.5" Margin="10,0,10,0"/>
+                                    <TextBlock Text="{Binding SplitViewTitle,Mode=TwoWay}" FontSize="19.5" Margin="15,0,0,0" FontFamily="{ThemeResource JhengHeiUIFontFamily}" FontWeight="Normal" FontStretch="UltraExpanded"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <Line VerticalAlignment="Center" HorizontalAlignment="Stretch" Stroke="Gray" X1="0" X2="10000" Y1="0" Y2="0" Grid.Row="3"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,0" Grid.Row="4">
+                        <Button x:Name="settingsButton" FontFamily="/Assets/Resources/iconfont.ttf#iconfont" Content="&#xe606;" FontSize="23.5" Margin="10,0,10,0" Background="Transparent" Click="settingsButton_Click"></Button>
+                    </StackPanel>
+                </Grid>
+            </SplitView.Pane>
+        </SplitView>
+    </Grid>
+</Page>
